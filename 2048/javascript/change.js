@@ -12,8 +12,8 @@ function showNum(x,y,value){
     //  elem.style.width="100px";
     //  elem.style.height="100px";
     elem.animate({
-        width:"100px",
-        height:"100px",
+        width:cellWidth+"px",
+        height:cellWidth+"px",
         top:getPosTop(x,y),
         left:getPosLeft(x,y)
     },100);

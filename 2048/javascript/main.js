@@ -2,6 +2,7 @@ var broad=new Array();
 var score=0;
 var isUse=new Array();
 window.onload=function(){
+    prepare();
     newgame();
 };
 
@@ -13,6 +14,25 @@ document.onkeydown=function(event){
             setTimeout("generateOneNumber()",300);
             setTimeout("isGameOver()",450);
         }
+    }
+}
+
+function prepare()
+{
+    if(screenWidth>544)
+    {
+        containerWidth=500;
+        cellWidth=100;
+        intervalWidth=20;
+    }
+    var elem=document.getElementById("container");
+    elem.style.width=containerWidth+"px";
+    elem.style.height=containerWidth+"px";
+    var elems=document.querySelectorAll(".cell");
+    for(var i=0;i<elems.length;i++)
+    {
+        elems[i].style.width=cellWidth+"px";
+        elems[i].style.height=cellWidth+"px";
     }
 }
 
@@ -117,8 +137,8 @@ function updateBroadView()
             {
                 divs.style.width=0;
                 divs.style.height=0;
-                divs.style.left=getPosLeft(i,j)+50+"px";
-                divs.style.top=getPosTop(i,j)+50+"px";
+                divs.style.left=getPosLeft(i,j)+cellWidth/2+"px";
+                divs.style.top=getPosTop(i,j)+cellWidth/2+"px";
             }
             else 
             {
@@ -127,9 +147,10 @@ function updateBroadView()
                 divs.style.color=getNumberColor(broad[i][j]);
                 divs.style.left=getPosLeft(i,j)+"px";
                 divs.style.top=getPosTop(i,j)+"px";
-                // divs.style.width="100px";
-                // divs.style.height="100px";
+                divs.style.width=cellWidth+"px";
+                divs.style.height=cellWidth+"px";
             }
+            divs.style.lineHeight=cellWidth+"px";
             elem.appendChild(divs);
         }
     }

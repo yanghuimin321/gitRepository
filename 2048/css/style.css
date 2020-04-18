@@ -45,8 +45,8 @@
 }
 
 #container{
-    width: 500px;
-    height: 500px;
+    /* width: 500px;
+    height: 500px; */
     display: block;
     background-color: #776e65;
     margin: 20px auto;
@@ -56,8 +56,8 @@
 }
 
 .cell{
-    width: 100px;
-    height: 100px;
+    /* width: 100px;
+    height: 100px; */
     position: absolute;
     background-color: #bbada0;
     border-radius: 6px;
@@ -65,8 +65,8 @@
 }
 
 .num-cell{
-    width: 100px;
-    height: 100px;
+    /* width: 100px;
+    height: 100px; */
     position: absolute;
     border-radius: 6px;
     -webkit-border-radius: 6px;
@@ -74,18 +74,4 @@
     text-align: center;
     font-size: 50px;
     font-weight: bold;
-}
-
-@keyframes name1{
-    from{}
-    to{
-        width: 100px;height: 100px;left:getPosLeft(x,y)+"px";top:getPosTop(x,y)+"px";
-    }
-}
-
-@-webkit-keyframes name1{
-    from{}
-    to{
-        width: 100px;height: 100px;left:getPosLeft(x,y)+"px";top:getPosTop(x,y)+"px";
-    }
 }

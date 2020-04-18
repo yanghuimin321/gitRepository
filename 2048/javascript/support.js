@@ -1,8 +1,14 @@
+var screenWidth=window.screen.availWidth;
+var containerWidth=0.92*screenWidth;
+var cellWidth=0.18*screenWidth;
+var intervalWidth=0.04*screenWidth;
+
+
 function getPosLeft(i,j){
-    return 20+j*120;
+    return intervalWidth+j*(intervalWidth+cellWidth);
 }
 function getPosTop(i,j){
-    return 20+i*120;
+    return intervalWidth+i*(intervalWidth+cellWidth);
 }
 
 function getNumberBackgroundColor(num){
