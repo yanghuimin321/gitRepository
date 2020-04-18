@@ -1,6 +1,7 @@
 var broad=new Array();
 var score=0;
 var isUse=new Array();
+var startx,starty,endx,endy;
 window.onload=function(){
     prepare();
     newgame();
@@ -11,11 +12,48 @@ document.onkeydown=function(event){
     if(e){
         if(canMove(e.keyCode)){
             move(e.keyCode,broad);
+            event.preventDefault();
             setTimeout("generateOneNumber()",300);
             setTimeout("isGameOver()",450);
         }
     }
 }
+// left:37
+// up:38
+// right:39
+// down:40
+addEventListener("touchstart",function(event){
+    startx=event.touches[0].pageX;
+    starty=event.touches[0].pageY;
+});
+addEventListener("touchend",function(event){
+    endx=event.changedTouches[0].pageX;
+    endy=event.changedTouches[0].pageY;
+    var x=endx-startx;
+    var y=endy-starty;
+    var dir;
+    if(Math.abs(x)>Math.abs(y))
+    {
+        if(Math.abs(x)<0.2*screenWidth)return ;
+        if(x>0)//move right
+        dir=39;
+        else //left
+        dir=37;
+    }
+    else
+    {
+        if(Math.abs(y)<0.1*screenWidth)return ;
+        if(y>0)//down
+        dir=40;
+        else //up
+        dir=38;
+    }
+    if(canMove(dir)){
+        move(dir,broad);
+        setTimeout("generateOneNumber()",300);
+        setTimeout("isGameOver()",450);
+    }
+});
 
 function prepare()
 {
