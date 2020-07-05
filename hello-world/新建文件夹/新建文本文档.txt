@@ -1,0 +1,28 @@
+使用sass编写样式，localStorage存储信息，vue-x进行整体状态管理。
+使用到了toast的建议消息提示框。下载数据功能。
+
+1、App.vue
+
+
+2、header.vue
+点击处使用a标签包裹着一个span，span使用伪元素:before,:after进行显示效果。
+
+3、event_add.vue
+
+4、event_list.vue
+为了时间列表能够实时更新，使用computed来获取事件信息。
+折叠面板实现silderDown/UP动画。
+
+5、footer.vue
+
+6、siderbar.vue
+	下载数据功能：JSON.stringify()获取数据，通过超链接来下载文件，download属性规定下载后文件名称，href属性规定下载链接。下载链接通过blob对象来生成。
+let blob=new Blob([content])；生成内容blob对象，URL.createObjectURL(blob)创建一个DOMString，包含一个对象URL，该URL可用于指定源object的内容。
+使用后要通过URL.revokeObjectURL(blob);来释放对象。
+
+7、theme.vue
+
+8、event_table.vue
+
+
+9、dialog.vue
