@@ -4,12 +4,12 @@
     <div class="container" v-show="!table">
       <addEvent></addEvent>
       <listEvent></listEvent>
-      <nsidebar :is-show="tools" 
+      <Sidebar :is-show="tools" 
       @opentheme="tools=false;theme=true;"
       @upload="uploadData"
       @opentable="tools=false;table=true;"
       @clear="clearData"
-      ></nsidebar>
+      ></Sidebar>
       <Theme :is-show="theme"></Theme>
     </div>
 
@@ -24,14 +24,14 @@
 
 <script>
 //import HelloWorld from './components/HelloWorld.vue'
-import Header from './components/header.vue'
+import Header from './components/todo_header.vue'
 import addEvent from './components/event_add'
 import listEvent from './components/event_list'
-import Footer from './components/footer'
-import nsidebar from './components/sidebar'
+import Footer from './components/todo_footer'
+import Sidebar from './components/todo_sidebar'
 import Table from './components/event_table'
-import Dialog from './components/dialog'
-import Theme from './components/theme'
+import Dialog from './components/todo_dialog'
+import Theme from './components/todo_theme'
 
 export default {
   name: 'App',
@@ -50,7 +50,7 @@ export default {
     }
   },
   components: {
-    Header,addEvent,listEvent,Footer,nsidebar,Table,Dialog,Theme
+    Header,addEvent,listEvent,Footer,Sidebar,Table,Dialog,Theme
   },
   computed:{
       getTheme(){
