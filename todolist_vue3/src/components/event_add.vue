@@ -1,0 +1,70 @@
+<template>
+  <div class="event_add">
+    <input
+      type="text"
+      class="add_input"
+      v-model="content"
+      @keyup.enter="submit"
+      placeholder="待办事项"
+    />
+    <button @click="submit" class="add_btn">提交</button>
+  </div>
+</template>
+
+<script setup>
+import { toast } from 'vue3-toastify'
+import { ref } from 'vue'
+import { useEventStore } from '@/stores/event'
+const eventStore = useEventStore()
+
+const content = ref('')
+
+function submit() {
+  let params = {
+    id: 0,
+    type: 1,
+    content: '',
+    time: '',
+  }
+  content.value = content.value.trim() //去掉字符首尾空格
+  if (content.value) {
+    params.content = content.value
+    eventStore.eventOperate('add', params)
+    content.value = ''
+    toast.success('添加成功')
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.event_add {
+  position: relative;
+  padding: 30px 90px 30px 0px;
+  //font-size:16px;
+  .add_input {
+    width: 100%;
+    height: 40px;
+    padding: 7px 10px;
+    line-height: 26px;
+    border: 1px solid #c0ccda;
+    border-radius: 4px;
+    transition: border-color 0.2s linear;
+    box-sizing: border-box;
+    font-size: inherit;
+    &:focus {
+      //输入框被点击
+      outline: none; //输入框边框轮廓
+    }
+  }
+  .add_btn {
+    position: absolute;
+    right: 0;
+    top: 30px;
+    width: 80px;
+    height: 40px;
+    line-height: 26px;
+    color: #fff;
+    //background-color: black;
+  }
+}
+</style>
