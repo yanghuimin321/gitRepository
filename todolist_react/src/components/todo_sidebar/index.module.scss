@@ -1,0 +1,31 @@
+.tool {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 250px;
+  padding: 100px 20px 30px;
+  box-sizing: border-box;
+  transform: translateX(-250px);
+  transition: all 0.3s;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  font-size: 16px;
+  // z-index:9;
+  &.show-tools {
+    transform: translateX(0);
+  }
+  .sidebar {
+    & > li {
+      line-height: 60px;
+    }
+  }
+  .btn {
+    //background: black;
+    width: 100px;
+    height: 40px;
+    line-height: 26px;
+    color: #fff;
+    transition: background 3s ease-in;
+  }
+}

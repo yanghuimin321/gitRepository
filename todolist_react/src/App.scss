@@ -1,0 +1,66 @@
+html,
+body,
+ul,
+li,
+input,
+p {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-size: 16px;
+  font-family: 'Helvetica Neue', Helvetica, 'microsoft yahei', arial, STHeiTi, sans-serif;
+}
+// html,body{
+//   height: 100%
+// }
+// body,#app{
+//   width: 100%;
+//   overflow-x:hidden;  //裁剪div元素内容多余的部分
+// }
+
+// ::-webkit-scrollbar{//右边滚动条宽度为0
+//   width: 0;
+// }
+#app {
+  height: 100%;
+  padding-bottom: 60px;
+  box-sizing: border-box; //边框边距等放入指定高宽中
+}
+.container {
+  width: 100%;
+  max-width: 800px;
+  padding: 0 10px;
+  margin: auto;
+  box-sizing: border-box;
+  // &.hide{
+  //   display: none;
+  // }
+}
+button {
+  padding: 7px 0;
+  outline: none;
+  text-align: center;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font: inherit;
+  cursor: pointer;
+  border-width: 0;
+}
+// input,button{
+//   -webkit-tap-highlight-color: transparent;
+// }
+// input[type=text]{
+//   -webkit-appearance: none;
+// }
+ul {
+  list-style: none;
+}
+.dialog-enter-active,
+.dialog-leave-active {
+  transition: opacity 0.3s;
+}
+.dialog-enter,
+.dialog-leave-to {
+  opacity: 0;
+}

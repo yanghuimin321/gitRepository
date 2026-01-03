@@ -1,0 +1,49 @@
+.theme {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 230px;
+  padding: 100px 20px 30px;
+  box-sizing: border-box;
+  transform: translateX(-250px);
+  transition: transform 0.3s;
+  background: rgba(0, 0, 0, 0.5);
+  //z-index:9;
+  &.theme_show {
+    transform: translateX(0);
+  }
+  .theme_box {
+    width: 100%;
+    padding: 0 10px;
+    margin: auto;
+    box-sizing: border-box;
+  }
+  .theme_title {
+    margin: 0 0 20px;
+    font-size: 20px;
+    color: #fff;
+  }
+  .theme_content {
+    //text-align: center;
+    li {
+      position: relative;
+      width: 70px;
+      height: 36px;
+      line-height: 36px;
+      padding-left: 36px;
+      border: 1px solid #aaa;
+      border-radius: 3px;
+      cursor: pointer;
+      margin: 0 auto 10px;
+      background: #fff;
+      span {
+        position: absolute;
+        left: 8px;
+        top: 8px;
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+}
