@@ -1,5 +1,5 @@
 <template>
-  <view class="navbar">
+  <view class="navbar" :style="{ paddingTop: safeAreaInsets?.top + 'px' }">
     <view class="logo">
       <image class="logo-image" src="@/static/images/logo.png"></image>
       <text class="logo-text">新鲜 · 亲民 · 快捷</text>
@@ -11,9 +11,14 @@
   </view>
 </template>
 
+<script setup lang="ts">
+const { safeAreaInsets } = uni.getSystemInfoSync() as any
+console.log('safeAreaInsets', safeAreaInsets)
+</script>
+
 <style lang="scss">
 .navbar {
-  background-image: url(@/static/image/navigator_bg.png);
+  background-image: url(@/static/images/navigator_bg.png);
   background-size: cover;
   position: relative;
   display: flex;
@@ -38,6 +43,27 @@
       border-left: 1rpx solid #fff;
       font-size: 26rpx;
     }
+  }
+  .search {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10rpx 0 26rpx;
+    height: 64rpx;
+    margin: 16rpx 20rpx;
+    color: #fff;
+    font-size: 28rpx;
+    border-radius: 32rpx;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  .icon-search {
+    &::before {
+      margin-right: 10rpx;
+    }
+  }
+  .icon-scan {
+    font-size: 30rpx;
+    padding: 15rpx;
   }
 }
 </style>

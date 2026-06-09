@@ -1,4 +1,4 @@
-import { userMemberStore } from '@/stores'
+import { useMemberStore } from '@/stores'
 
 const baseURL = 'https://pcapi-xiaotuxian-front-devtest.itheima.net'
 
@@ -12,7 +12,7 @@ const httpInterceptor = {
       ...options.header,
     }
 
-    const memberStore = userMemberStore()
+    const memberStore = useMemberStore()
     const token = memberStore.profile?.token
     if (token) {
       options.header.Authorization = token
@@ -49,7 +49,7 @@ export const http = <T>(options: UniApp.RequestOptions) => {
         if (res.statusCode >= 200 && res.statusCode < 300) {
           resolve(res.data as Data<T>)
         } else if (res.statusCode === 401) {
-          const memberStore = userMemberStore()
+          const memberStore = useMemberStore()
           memberStore.clearProfile()
           uni.navigateTo({ url: '/pages/login/login' })
           reject(res)
