@@ -11,7 +11,4 @@ onHide(() => {
 })
 </script>
 <style>
-page {
-  background-color: #f7f7f7;
-}
 </style>
