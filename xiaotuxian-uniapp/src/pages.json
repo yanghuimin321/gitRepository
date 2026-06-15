@@ -21,6 +21,13 @@
         "navigationBarBackgroundColor": "#F8F8F8",
         "navigationBarTextStyle": "black"
       }
+    },
+    {
+      "path": "pages/goods/goods",
+      "style": {
+        "navigationBarTitleText": "",
+        "enablePullDownRefresh": false
+      }
     }
   ],
   "easycom": {
