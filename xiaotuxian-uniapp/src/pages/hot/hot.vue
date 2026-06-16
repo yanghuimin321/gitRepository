@@ -136,7 +136,7 @@ page {
     justify-content: space-evenly;
     height: 100rpx;
     line-height: 90rpx;
-    margin: 0 20px;
+    margin: 0 20rpx;
     font-size: 28rpx;
     border-radius: 10rpx;
     box-shadow: 0 4rpx 5rpx rgba(200, 200, 200, 0.3);
@@ -145,7 +145,7 @@ page {
     position: relative;
     z-index: 9;
     .text {
-      margin: 0 20px;
+      margin: 0 20rpx;
       position: relative;
     }
     .active::after {

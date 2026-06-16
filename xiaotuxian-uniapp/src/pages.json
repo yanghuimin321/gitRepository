@@ -46,7 +46,10 @@
     "backgroundColor": "#F8F8F8"
   },
   "tabBar": {
-    "selectedColor": "#27BA9B",
+    "color": "#333",
+		"selectedColor": "#27ba9b",
+		"backgroundColor": "#fff",
+		"borderStyle": "white",
     "list": [
       {
         "pagePath": "pages/index/index",
@@ -54,6 +57,18 @@
         "iconPath": "/static/tabs/home_default.png",
         "selectedIconPath": "/static/tabs/home_selected.png"
       },
+      /*{
+        "pagePath": "pages/goods/goods",
+        "text": "分类",
+        "iconPath": "/static/tabs/category_default.png",
+        "selectedIconPath": "/static/tabs/category_selected.png"
+      },
+      {
+        "pagePath": "pages/hot/hot",
+        "text": "购物车",
+        "iconPath": "/static/tabs/cart_default.png",
+        "selectedIconPath": "/static/tabs/cart_selected.png"
+      },*/
       {
         "pagePath": "pages/my/my",
         "text": "我的",
