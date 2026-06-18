@@ -47,4 +47,12 @@ image {
   line-clamp: 2;
   -webkit-box-orient: vertical;
 }
+
+page {
+  background-color: #f7f7f7;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
 </style>

@@ -21,7 +21,7 @@ defineProps<{
 }>()
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .category {
   margin: 20rpx 0 0;
   padding: 10rpx 0;

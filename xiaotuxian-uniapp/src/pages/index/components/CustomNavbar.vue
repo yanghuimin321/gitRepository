@@ -16,7 +16,7 @@ const { safeAreaInsets } = uni.getSystemInfoSync() as any
 console.log('safeAreaInsets', safeAreaInsets)
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .navbar {
   background-image: url(@/static/images/navigator_bg.png);
   background-size: cover;

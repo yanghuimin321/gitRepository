@@ -35,7 +35,7 @@ const onChange: UniHelper.SwiperOnChange = (item) => {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .carousel {
   height: 280rpx;
   position: relative;

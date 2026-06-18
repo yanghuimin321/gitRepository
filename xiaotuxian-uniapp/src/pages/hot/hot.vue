@@ -106,11 +106,7 @@ const onScrolltolower = async () => {
 }
 </script>
 
-<style lang="scss">
-page {
-  height: 100%;
-  background-color: #f4f4f4;
-}
+<style lang="scss" scoped>
 .viewport {
   display: flex;
   flex-direction: column;

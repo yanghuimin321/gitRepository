@@ -59,7 +59,7 @@ defineExpose({
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .caption {
   display: flex;
   justify-content: center;

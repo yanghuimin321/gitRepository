@@ -23,7 +23,14 @@
       }
     },
     {
-      "path": "src/pages/category.vue/category.vue",
+      "path": "pages/category/category",
+      "style": {
+        "navigationBarTitleText": "",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/goods/goods",
       "style": {
         "navigationBarTitleText": "",
         "enablePullDownRefresh": false

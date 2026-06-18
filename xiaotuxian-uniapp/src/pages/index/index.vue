@@ -76,15 +76,9 @@ const onRefresherrefresh = async () => {
 }
 </script>
 
-<style lang="scss">
-page {
-  background-color: #f7f7f7;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  .scroll-view {
-    flex: 1;
-    height: 0;
-  }
+<style lang="scss" scoped>
+.scroll-view {
+  flex: 1;
+  height: 0;
 }
 </style>
