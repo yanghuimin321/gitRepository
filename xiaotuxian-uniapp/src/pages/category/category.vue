@@ -1,5 +1,6 @@
 <template>
-  <view class="viewport">
+  <page-skeleton v-if="loading"></page-skeleton>
+  <view class="viewport" v-else>
     <!-- 搜索框 -->
     <view class="search">
       <view class="input">
@@ -10,35 +11,39 @@
     <view class="categories">
       <!-- 左侧：一级分类 -->
       <scroll-view class="primary" scroll-y>
-        <view class="item" v-for="(item, index) in 10" :key="item" :class="{ active: index == 0 }">
-          <text class="name">居家</text>
+        <view
+          class="item"
+          v-for="(item, index) in categoryList"
+          :key="item.id"
+          :class="{ active: index == activeIndex }"
+          @tap="activeIndex = index"
+        >
+          <text class="name">{{ item.name }}</text>
         </view>
       </scroll-view>
       <!-- 右侧：二级分类 -->
       <scroll-view class="secondary" scroll-y>
         <!-- 轮播图 -->
-        <xtx-swiper class="banner" :list="[]"></xtx-swiper>
+        <xtx-swiper class="banner" :list="bannerList"></xtx-swiper>
         <!-- 内容 -->
-        <view class="panel" v-for="item in 10" :key="item">
+        <view class="panel" v-for="item in subCategoryList" :key="item.id">
           <view class="title">
-            <text class="name">宠物用品</text>
+            <text class="name">{{ item.name }}</text>
             <navigator class="more" hover-class="none">全部</navigator>
           </view>
           <view class="section">
             <navigator
               class="goods"
               hover-class="none"
-              v-for="goods in 4"
-              :key="goods"
-              :url="`/pages/goods/goods?id=`"
+              v-for="goods in item.goods"
+              :key="goods.id"
+              :url="`/pages/goods/goods?id=${goods.id}`"
             >
-              <image
-                src="https://yanxuan-item.nosdn.127.net/674ec7a88de58a026304983dd049ea69.jpg"
-              />
-              <view class="name ellipsis">商品名称1</view>
+              <image :src="goods.picture" />
+              <view class="name ellipsis">{{ goods.name }}</view>
               <view class="price">
                 <text class="symbol">￥</text>
-                <text class="number">16.00</text>
+                <text class="number">{{ goods.price }}</text>
               </view>
             </navigator>
           </view>
@@ -48,7 +53,43 @@
   </view>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { getCategoryBannerAPI, getCategoryTopAPI } from '@/services/category'
+import type { CategoryTopItem } from '@/types/category'
+import type { BannerItem } from '@/types/home'
+import { onLoad } from '@dcloudio/uni-app'
+import { computed, ref } from 'vue'
+import PageSkeleton from './components/PageSkeleton.vue'
+
+const loading = ref(false)
+onLoad(async () => {
+  loading.value = true
+  await Promise.all([getCategoryTopData(), getCategoryBannerData()])
+  loading.value = false
+})
+
+// 轮播图数据
+const bannerList = ref<BannerItem[]>([])
+const getCategoryBannerData = async () => {
+  const res = await getCategoryBannerAPI()
+  bannerList.value = res.result
+}
+
+//分类数据
+const categoryList = ref<CategoryTopItem[]>([])
+const getCategoryTopData = async () => {
+  const res = await getCategoryTopAPI()
+  categoryList.value = res.result
+}
+
+//高亮下标
+const activeIndex = ref(0)
+
+// 当前选中高亮二级分类数据
+const subCategoryList = computed(() => {
+  return categoryList.value[activeIndex.value]?.children || []
+})
+</script>
 
 <style lang="scss" scoped>
 .viewport {
@@ -57,7 +98,7 @@
   flex-direction: column;
 
   .search {
-    padding: 0 30rpx 20rpx;
+    padding: 20rpx 30rpx;
     background-color: #fff;
     .input {
       display: flex;
@@ -124,7 +165,7 @@
     // 二级分类
     .secondary {
       background-color: #fff;
-      .carousel {
+      :deep(.carousel) {
         height: 200rpx;
         margin: 0 30rpx 20rpx;
         border-radius: 4rpx;
@@ -135,6 +176,7 @@
         margin: 0 30rpx 0rpx;
         .title {
           height: 60rpx;
+          line-height: 60rpx;
           color: #333;
           font-size: 28rpx;
           border-bottom: 1rpx solid #f7f7f8;
