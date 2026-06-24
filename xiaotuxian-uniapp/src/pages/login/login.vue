@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { postLoginWxMinAPI, postLoginWxMinSimpleAPI } from '@/services/login'
+import { postLoginWxMinAPI, postLoginWxMinSimpleAPI } from '@/services/member'
 import { useMemberStore } from '@/stores'
 import type { LoginResult } from '@/types/member'
 import { onLoad } from '@dcloudio/uni-app'

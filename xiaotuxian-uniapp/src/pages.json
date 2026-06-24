@@ -94,7 +94,7 @@
 					"path": "profile/profile",
 					"style": {
 						"navigationBarTitleText": "profile",
-            "navigationStyle": "custom"
+						"navigationStyle": "custom"
 					}
 				},
 				{
@@ -102,15 +102,29 @@
 					"style": {
 						"navigationBarTitleText": "settings"
 					}
+				},
+				{
+					"path": "address/address",
+					"style": {
+						"navigationBarTitleText": "address"
+					}
+				},
+				{
+					"path": "address-form/address-form",
+					"style": {
+						"navigationBarTitleText": "address-form"
+					}
 				}
 			]
 		}
 	],
-  //分包预下载
-  "preloadRule": {
-    "pages/my/my": {
-      "network": "all",
-      "packages": ["pagesMember"]
-    }
-  }
+	//分包预下载
+	"preloadRule": {
+		"pages/my/my": {
+			"network": "all",
+			"packages": [
+				"pagesMember"
+			]
+		}
+	}
 }
