@@ -100,19 +100,19 @@
 				{
 					"path": "settings/settings",
 					"style": {
-						"navigationBarTitleText": "settings"
+						"navigationBarTitleText": "设置"
 					}
 				},
 				{
 					"path": "address/address",
 					"style": {
-						"navigationBarTitleText": "address"
+						"navigationBarTitleText": "地址管理"
 					}
 				},
 				{
 					"path": "address-form/address-form",
 					"style": {
-						"navigationBarTitleText": "address-form"
+						"navigationBarTitleText": "修改地址"
 					}
 				}
 			]
