@@ -29,7 +29,7 @@
 
         <!-- 操作面板 -->
         <view class="action">
-          <view class="item arrow">
+          <view class="item arrow" @tap="openSkuPopup(SkuMode.Both)">
             <text class="label">选择</text>
             <text class="text ellipsis">选择商品规格</text>
           </view>
@@ -98,13 +98,13 @@
       <button class="icons-button" open-type="contact">
         <text class="icon-handset"></text>客服
       </button>
-      <navigator class="icons-button" url="/pages/cart/cart" open-type="switchTab">
+      <navigator class="icons-button" url="/pages/cart/cart2" open-type="navigate">
         <text class="icon-cart"></text>购物车
       </navigator>
     </view>
     <view class="buttons">
-      <view class="addcart">加入购物车</view>
-      <view class="buynow">立即购买</view>
+      <view class="addcart" @tap="openSkuPopup(SkuMode.Cart)">加入购物车</view>
+      <view class="buynow" @tap="openSkuPopup(SkuMode.Buy)">立即购买</view>
     </view>
   </view>
 
@@ -113,6 +113,22 @@
     <address-panel v-if="popupName === 'address'" @close="popup?.close()"></address-panel>
     <service-panel v-if="popupName === 'service'" @close="popup?.close()"></service-panel>
   </uni-popup>
+
+  <!-- 商品规格弹出层 -->
+  <vk-data-goods-sku-popup
+    v-model="isShowSku"
+    :localdata="localdata"
+    :mode="mode"
+    add-cart-bakadd-cart-background-color="#FFA868"
+    buy-now-background-color="#27BA9B"
+    ref="skuPopupRef"
+    :actived-style="{
+      color: '#27ba9b',
+      borderColor: '#27ba9b',
+      backgroundColor: '#e9f8f5',
+    }"
+    @add-cart="onAddCart"
+  ></vk-data-goods-sku-popup>
 </template>
 
 <script setup lang="ts">
@@ -123,6 +139,8 @@ import { ref } from 'vue'
 import AddressPanel from './components/AddressPanel.vue'
 import ServicePanel from './components/ServicePanel.vue'
 import PageSkeleton from './components/PageSkeleton.vue'
+import type { SkuPopupEvent, SkuPopupLocaldata } from '@/types/vk-data-goods-sku-popup.js'
+import { postMemberCartAPI } from '@/services/cart.ts'
 
 // 获取屏幕边界到安全区域的距离
 const { safeAreaInsets } = uni.getSystemInfoSync()
@@ -136,6 +154,21 @@ const goodInfo = ref<GoodsResult>()
 const getGoodsByIdDdata = async () => {
   const res = await getGoodsByIdAPI(query.id)
   goodInfo.value = res.result
+  localdata.value = {
+    _id: res.result.id,
+    name: res.result.name,
+    goods_thumb: res.result.mainPictures[0],
+    spec_list: res.result.specs.map((v) => ({ name: v.name, list: v.values })),
+    sku_list: res.result.skus.map((v) => ({
+      _id: v.id,
+      goods_id: res.result.id,
+      goods_name: res.result.name,
+      image: v.picture,
+      price: v.price * 100, // 注意：需要乘以 100
+      stock: v.inventory,
+      sku_name_arr: v.specs.map((vv) => vv.valueName),
+    })),
+  }
 }
 const loading = ref(false)
 onLoad(async () => {
@@ -165,6 +198,26 @@ const popupName = ref<'address' | 'service'>()
 const openPopup = (name: typeof popupName.value) => {
   popupName.value = name
   popup.value?.open()
+}
+
+// 商品规格弹出层
+const isShowSku = ref(false)
+const localdata = ref({} as SkuPopupLocaldata)
+enum SkuMode {
+  Both = 1,
+  Cart = 2,
+  Buy = 3,
+}
+const mode = ref<SkuMode>()
+const openSkuPopup = (val: SkuMode) => {
+  isShowSku.value = true
+  mode.value = val
+}
+// 加入购物车
+const onAddCart = async (ev: SkuPopupEvent) => {
+  await postMemberCartAPI({ skuId: ev._id, count: ev.buy_num })
+  uni.showToast({ title: '添加成功' })
+  isShowSku.value = false
 }
 </script>
 

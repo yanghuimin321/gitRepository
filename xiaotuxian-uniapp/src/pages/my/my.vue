@@ -73,6 +73,9 @@
 <script setup lang="ts">
 import { useGuessList } from '@/composables'
 import { useMemberStore } from '@/stores'
+import type { LoginResult } from '@/types/member'
+import { onShow } from '@dcloudio/uni-app'
+import { ref } from 'vue'
 
 const { safeAreaInsets } = uni.getSystemInfoSync()
 
@@ -86,9 +89,12 @@ const orderTypes = [
 //猜你喜欢组合式函数
 const { guessRef, onScrolltolower } = useGuessList()
 
-//获取会员信息
-const memberStore = useMemberStore()
-const profile = memberStore.profile
+const profile = ref<LoginResult>()
+onShow(() => {
+  //获取会员信息
+  const memberStore = useMemberStore()
+  profile.value = memberStore.profile
+})
 </script>
 
 <style lang="scss" scoped>

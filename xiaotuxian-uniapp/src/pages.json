@@ -37,6 +37,18 @@
 			"style": {
 				"navigationBarTitleText": "登录"
 			}
+		},
+		{
+			"path": "pages/cart/cart",
+			"style": {
+				"navigationBarTitleText": "购物车"
+			}
+		},
+    {
+			"path": "pages/cart/cart2",
+			"style": {
+				"navigationBarTitleText": "购物车"
+			}
 		}
 	],
 	"easycom": {
@@ -44,7 +56,8 @@
 		"custom": {
 			// uni-ui 规则如下配置
 			"^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue",
-			"^xtx-(.*)": "@/components/xtx-$1.vue"
+			"^xtx-(.*)": "@/components/xtx-$1.vue",
+			"^vk-data-(.*)": "@/components/vk-data-$1/vk-data-$1.vue"
 		}
 	},
 	// 全局样式配置
@@ -73,7 +86,7 @@
 				"selectedIconPath": "/static/tabs/category_selected.png"
 			},
 			{
-				"pagePath": "pages/login/login",
+				"pagePath": "pages/cart/cart",
 				"text": "购物车",
 				"iconPath": "/static/tabs/cart_default.png",
 				"selectedIconPath": "/static/tabs/cart_selected.png"
