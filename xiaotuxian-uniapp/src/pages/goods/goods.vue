@@ -128,6 +128,7 @@
       backgroundColor: '#e9f8f5',
     }"
     @add-cart="onAddCart"
+    @buy-now="onBuyNow"
   ></vk-data-goods-sku-popup>
 </template>
 
@@ -218,6 +219,10 @@ const onAddCart = async (ev: SkuPopupEvent) => {
   await postMemberCartAPI({ skuId: ev._id, count: ev.buy_num })
   uni.showToast({ title: '添加成功' })
   isShowSku.value = false
+}
+
+const onBuyNow = async (ev: SkuPopupEvent) => {
+  uni.navigateTo({ url: `/pagesOrder/create/create?skuId=${ev._id}&count=${ev.buy_num}` })
 }
 </script>
 
