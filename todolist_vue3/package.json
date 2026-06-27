@@ -27,7 +27,7 @@
     "globals": "^16.5.0",
     "prettier": "3.7.4",
     "sass": "^1.97.1",
-    "vite": "^7.3.0",
+    "vite": "^7.3.2",
     "vite-plugin-vue-devtools": "^8.0.5"
   }
 }
