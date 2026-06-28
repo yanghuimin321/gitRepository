@@ -49,7 +49,7 @@
       <!-- 配送状态 -->
       <view class="shipment">
         <!-- 订单物流信息 -->
-        <view class="item" v-for="item in i" :key="item">
+        <view class="item" v-for="item in 1" :key="item">
           <view class="message">
             您已在广州市天河区黑马程序员完成取件，感谢使用菜鸟驿站，期待再次为您服务。
           </view>
