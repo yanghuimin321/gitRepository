@@ -25,7 +25,7 @@
     @scrolltolower="onScrolltolower"
     enable-back-to-top
   >
-    <template v-if="true">
+    <template v-if="!loading">
       <!-- 订单状态 -->
       <view class="overview" :style="{ paddingTop: safeAreaInsets!.top + 20 + 'px' }">
         <!-- 待付款状态：展示去支付按钮和倒计时 -->
@@ -195,6 +195,7 @@
     </template>
     <template v-else>
       <!-- 骨架屏 -->
+      <page-skeleton></page-skeleton>
     </template>
   </scroll-view>
 
@@ -233,6 +234,7 @@ import {
 import type { OrderLogisticResult, OrderResult } from '@/types/order'
 import { onLoad, onReady } from '@dcloudio/uni-app'
 import { ref, watch } from 'vue'
+import PageSkeleton from './components/PageSkeleton.vue'
 
 // 获取屏幕边界到安全区域距离
 const { safeAreaInsets } = uni.getSystemInfoSync()
@@ -290,8 +292,11 @@ onReady(() => {
   })
 })
 
-onLoad(() => {
-  getMemberOrderByIdData()
+const loading = ref(false)
+onLoad(async () => {
+  loading.value = true
+  await getMemberOrderByIdData()
+  loading.value = false
 })
 
 // 复制内容
@@ -370,6 +375,7 @@ const onOrderDelete = () => {
 const onOrderCancel = async () => {
   const res = await getMemberOrderCancelByIdAPI(query.id, { cancelReason: reason.value })
   order.value = res.result
+  popup.value?.close()
 }
 
 // 监听订单状态，获取订单物流信息

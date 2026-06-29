@@ -24,3 +24,12 @@ export const orderStateList = [
   { id: 5, text: '已完成' },
   { id: 6, text: '已取消' },
 ]
+
+/** 订单列表 tabs 数据 */
+export const orderTabs = [
+  { orderState: 0, title: '全部' },
+  { orderState: 1, title: '待付款' },
+  { orderState: 2, title: '待发货' },
+  { orderState: 3, title: '待收货' },
+  { orderState: 4, title: '待评价' },
+]

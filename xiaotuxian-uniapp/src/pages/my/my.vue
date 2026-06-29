@@ -54,7 +54,7 @@
           v-for="item in orderTypes"
           :key="item.type"
           :class="item.icon"
-          :url="`/pageOrder/list/list?type=${item.type}`"
+          :url="`/pagesOrder/list/list?type=${item.type}`"
         >
           {{ item.text }}
         </navigator>
