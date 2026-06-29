@@ -15,7 +15,7 @@
       class="shipment"
       v-else
       hover-class="none"
-      url="/pagesMember/addresss/address?from=order"
+      url="/pagesMember/address/address?from=order"
     >
       <view class="address">请选择收货地址</view>
       <text class="icon icon-right"></text>
@@ -84,7 +84,12 @@
 </template>
 
 <script lang="ts" setup>
-import { getMemberOrderPreAPI, getMemberOrderPreNowAPI, postMemberOrderAPI } from '@/services/order'
+import {
+  getMemberOrderPreAPI,
+  getMemberOrderPreNowAPI,
+  getMemberOrderRepurchaseByIdAPI,
+  postMemberOrderAPI,
+} from '@/services/order'
 import { useAddressStore } from '@/stores/modules/address'
 import type { OrderPreResult } from '@/types/order'
 import { onLoad } from '@dcloudio/uni-app'
@@ -111,6 +116,7 @@ const onChangeDelivery: UniHelper.SelectorPickerOnChange = (ev) => {
 const query = defineProps<{
   skuId?: string
   count?: string
+  orderId?: string
 }>()
 
 // 获取预付订单数据
@@ -119,6 +125,7 @@ const getMemberOrderPreData = async () => {
   let res
   if (query.count && query.skuId)
     res = await getMemberOrderPreNowAPI({ skuId: query.skuId, count: query.count })
+  else if (query.orderId) res = await getMemberOrderRepurchaseByIdAPI(query.orderId)
   else res = await getMemberOrderPreAPI()
   orderPre.value = res.result
 }
